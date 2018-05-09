@@ -1,4 +1,4 @@
-Open Chrome browser and let Katalon Studio to use it
+Open Chrome browser and let Katalon Studio use it
 ====================================================
 
 # What is this?
@@ -23,8 +23,8 @@ Select one of test cases and run it.
 | Test Case name | What it does | expected result |
 |:---------------|:-------------|:----:|
 | `TC1_defaultWayOfOpeningBrowser` | calls `WebUI.openBrowser()` as usual | should succeed |
-| `TC2_openOrdinaryChrome`         | instantiates ChromeDriver without additional options, and let Katalon Studio to use it | should succeed |
-| `TC3_openChromeWithSwitches`     | instantiates ChromeDriver with an additional option, and let Katalon Studio to use it. | should fail |
+| `TC2_openOrdinaryChrome`         | instantiates ChromeDriver without additional options, and let Katalon Studio use it | should succeed |
+| `TC3_openChromeWithSwitches`     | instantiates ChromeDriver with an additional option, and let Katalon Studio use it. | should fail |
 
 # Description
 ## My problem to solve
