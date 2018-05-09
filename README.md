@@ -136,8 +136,8 @@ I refered to a blog [List of Chromium Command Line Switches](https://peter.sh/ex
 | `--remote-debugging-port=12705` | *Enables remote debug over HTTP on the specified port.   |
 | `--user-data-dir=...`   | *Directory where the browser stores the user profile.* |
 
-As for `--proxyserver=xxxx` Switchesh, I thought it is not very meaningful. Because the Chrome brows is already configured with Proxy info. It does not need to be instructed of Proxy by Katalon Studio.
+As for `--proxyserver=xxxx` switch, I thought it is not meaningful. Because my Chrome browser is already configured with Proxy info. It does not need to be instructed by Katalon Studio of Proxy info.
 
-As for `--remote-debugging-port=12705` switch, I made one more test case `TC3_openChromeWithSwitches` and ran it to see what happens. The result was a bit interesting. TC3 succeded to open the Chrome browser, but Katalon Studio seemed unable to communicate with the Chrome. Ok, I should NOT specify `--remote-debugging-port=12705` either.
+As for `--remote-debugging-port=12705` switch, I made one more test case `TC3_openChromeWithSwitches` and ran it to see what happens. The result was interesting. TC3 succeeded to open the Chrome browser but Katalon Studio failed to communicate with the Chrome. OK, I should NOT specify `--remote-debugging-port=12705` either.
 
-So my conclusion: if your Chrome browser has a ForceInstalledExtensions installed, then apply the trick `TC2_openOrdinaryChrome` to run your test with Chrome.
+My conclusion: as far as my Chrome browser on my corporate PC has a ForceInstalledExtensions installed, I would apply the trick `TC2_openOrdinaryChrome` to run my tests with Chrome.
