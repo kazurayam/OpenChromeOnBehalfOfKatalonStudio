@@ -1,30 +1,56 @@
 ChangingChromeDriverDemo
 ========================
 
-# What is this? For what purpose is it?
-As "https://forum.katalon.com/discussion/6150/google-chrome-crashed-on-my-pc-----2-reasons-found" records,
-I have ever encountered a problem while using Katalon Studio on my corporate PC.
-When I execute a test case with Google Chrome browser, chrome crashed.
-After months of investigation I found the reason why Chrome crashed.
-The crash occurs if one or more Force-Installed-Extension is installed in Chrome.
+# What is this?
+
+This is a simple [Katalon Studio](https://www.katalon.com/) project for demonstration purpose.
+You can check this out onto your PC and execute with you Katalon Stduio.
+
+
+
+This project presents a solution to a problem I raised at a post in the Katalon Forum [google chrome crashed on my pc ---- 2 reasons found]( https://forum.katalon.com/discussion/6150/google-chrome-crashed-on-my-pc-----2-reasons-found)
+
+# How to run the example
+
+Once cloned the project on your PC, start Katalon Studio and open the project.
+
+This project is developed with Katalon Studio ver5.4.1.
+
+Check the Execution Profile where you find 2 global variables: KATALONSTUDIO_HOME, DRIVERLOG_OUTPUT_DIRECTORY. Please change the value to fit your environment.
+
+Select one of test cases and run it.
+
+| Test Case name | What it does | expected result |
+|:---------------|:-------------|:----:|
+| TC1_defaultWayOfOpeningBrowser | calls `WebUI.openBrowser()` as usual | should succeed |
+| TC2_openOrdinaryChrome         | instanciates ChromeDriver without additional options, and let Katalon Studio to use it | should succeed |
+| TC3_openChromeWithSwitches     | instanciates ChromeDriver with an additional option, and let Katalon Studio to use it. | should fail |
+
+# Description
+## My problem to solve
+
+As my post [google chrome crashed on my pc ---- 2 reasons found]( https://forum.katalon.com/discussion/6150/google-chrome-crashed-on-my-pc-----2-reasons-found) describes, Katalon Studio on my PC always fails to open Google Chrome browser. I have found out why.
+
+1. Katalon Studio wants to start chrome.exe with `--disable-extensions` switch. This is proved by looking at the chromedriver.log file.
+2. On the other hand, on my PC, there is a [Force-Installed-Extension](https://getadmx.com/?Category=Chrome&Policy=Google.Policies.Chrome::ExtensionInstallForcelist) in the Chrome browser. A Force-Installed-Extension can not be disabled.
+
+This contradiction brings the Google Chrome crazy; it crashes.
 
 What is 'Force-Installed-Extension'? --- Please refer to
  https://getadmx.com/?Category=Chrome&Policy=Google.Policies.Chrome::ExtensionInstallForcelist
 
- Katalon Studio (or chromedriver.exe) starts the Chrome browser with the '--disable-extensions' switch.
- On the other hand, on my PC in Chrome there installed a force-installed extension which resists to be disabled.
- Due to this contradiction Chrome crashed.
+## Way of working-around
 
- I tried to find a workaround. I have got one.
- com.kms.katalon.core.webui.driver.DriverFactory class implements changeWebDriver() method.
- Provided with changeWebDriver() method, I can instanciate a ChromeDriver myself and
- let Katalon to use it. This worked fine. Chrome does not go crashed.
+By looking at the log file of chromdriver.exe, I realized that the Katalon Studio wants chromedriver to generate a command to start chrome.exe with `--disable-extensions` switch. This switch was the cause of the crash. So I want to start chrome without `--disable-exteions` switch. I studied many posts in the Katalon Forum and have got an idea:
 
- I learned aboutn DriverFactory#changeWebDriver() in the discussion of
-  https://forum.katalon.com/discussion/comment/15164#Comment_15164
+1. I will not rely on Katalon Studio to open browser.
+1. Rather my test case will instanciate  `org.selenium.org.openqa.selenium.chrome.ChromeDriver`.
+1. My test case lets Katalon Studio to use the ChromeDriver instance for running tests. This can be done by using  `com.kms.katalon.core.webui.driver.DriverFactory#changeWebDriver()` method.
+
+I learned about DriverFactory#changeWebDriver() in the discussion at https://forum.katalon.com/discussion/comment/15164#Comment_15164
 
 
-#
+## Design detail
 
 ```
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --chrome.switches --disable-background-networking --disable-client-side-phishing-detection --disable-default-apps --disable-extensions --disable-extensions-except="C:\Users\username\AppData\Local\Temp\scoped_dir9548_2256\internal" --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --disable-web-resources --enable-automation --enable-logging --force-fieldtrials=SiteIsolationExtensions/Control --ignore-certificate-errors --log-level=0 --metrics-recording-only --no-first-run --password-store=basic --proxy-server=ftp=172.24.2.10:8080;http=172.24.2.10:8080;https=172.24.2.10:8080 --remote-debugging-port=12705 --test-type=webdriver --use-mock-keychain --user-data-dir="C:\Users\username\AppData\Local\Temp\scoped_dir9548_25002" data:, |
