@@ -46,8 +46,8 @@ By looking at the log file of chromedriver.exe, I found that the Katalon Studio 
 After many searches in the Katalon Forum I got an idea:
 
 1. I won't rely on Katalon Studio for opening Chrome browser.
-1. Rather, my test case should instantiate  `org.selenium.org.openqa.selenium.chrome.ChromeDriver`.
-1. My test case should let Katalon Studio to use the ChromeDriver instance for running tests. This can be done by calling  `com.kms.katalon.core.webui.driver.DriverFactory#changeWebDriver()` method.
+1. Rather, my test case should instantiate  `org.selenium.org.openqa.selenium.chrome.ChromeDriver`. Here I will NOT  specify `--disable-extensions` switch.
+1. My test case should let Katalon Studio use the ChromeDriver instance for running tests. This can be done by calling  `com.kms.katalon.core.webui.driver.DriverFactory#changeWebDriver()` method.
 
 See the following snippet of `TC2_openOrdinaryChrome`:
 
