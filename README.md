@@ -136,4 +136,4 @@ As for `--proxyserver=xxxx` Switchesh, I thought it is not very meaningful. Beca
 
 As for `--remote-debugging-port=12705` switch, I made one more test case `TC3_openChromeWithSwitches` and ran it to see what happens. The result was a bit interesting. TC3 succeded to open the Chrome browser, but Katalon Studio seemed unable to communicate with the Chrome. Ok, I should NOT specify `--remote-debugging-port=12705` either.
 
-So my conclusion: `TC2_openOrdinaryChrome` is enough for me.
+So my conclusion: if your Chrome browser has a ForceInstalledExtensions installed, then apply the trick `TC2_openOrdinaryChrome` to run your test with Chrome.
