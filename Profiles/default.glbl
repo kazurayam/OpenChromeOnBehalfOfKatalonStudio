@@ -14,9 +14,4 @@
       <initValue>'C:/temp'</initValue>
       <name>DRIVERLOG_OUTPUT_DIRECTORY</name>
    </GlobalVariableEntity>
-   <GlobalVariableEntity>
-      <description></description>
-      <initValue>false</initValue>
-      <name>CHANGE_WEBDRIVER</name>
-   </GlobalVariableEntity>
 </GlobalVariableEntities>

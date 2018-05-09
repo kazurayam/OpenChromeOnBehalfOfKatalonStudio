@@ -19,23 +19,19 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKe
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-/**
- * This code demonstrates how effectively DriverFactory.changeWebDriver() method can be used.
- */
-
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.remote.DesiredCapabilities
 import com.kms.katalon.core.webui.driver.DriverFactory
 
+// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
 
-if (GlobalVariable.CHANGE_WEBDRIVER) {
-	ChromeOptions options = new ChromeOptions()
-	DesiredCapabilities capabilities = new DesiredCapabilities()
-	capabilities.setCapability(ChromeOptions.CAPABILITY, options)
-	WebDriver driver = new ChromeDriver(capabilities)
-	DriverFactory.changeWebDriver(driver)
-} else {
-	WebUI.openBrowser('')
-}
+// open Chrome browser and let Katalon Studio to use it
+WebDriver driver = new ChromeDriver()
+DriverFactory.changeWebDriver(driver)
+
+// execute some steps
+WebUI.navigateToUrl('http://demoaut.katalon.com')
+WebUI.verifyElementPresent(findTestObject("Page_CURA Healthcare Service/a_Make Appointment"), 20)
+
+// close the browser
+WebUI.closeBrowser()

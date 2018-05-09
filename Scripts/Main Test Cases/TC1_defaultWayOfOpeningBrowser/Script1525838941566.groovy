@@ -19,8 +19,10 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKe
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-// open a browser window of Google Chrome
-WebUI.callTestCase(findTestCase('Common/OpenBrowser'), [:], FailureHandling.STOP_ON_FAILURE)
+// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
+
+// let Katalon Stuio open a browser
+WebUI.openBrowser('')
 
 // execute some steps
 WebUI.navigateToUrl('http://demoaut.katalon.com')
