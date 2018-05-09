@@ -47,8 +47,28 @@ By looking at the log file of chromedriver.exe, I realized that the Katalon Stud
 1. Rather, my test case should instantiate  `org.selenium.org.openqa.selenium.chrome.ChromeDriver`.
 1. My test case should let Katalon Studio to use the ChromeDriver instance for running tests. This can be done by calling  `com.kms.katalon.core.webui.driver.DriverFactory#changeWebDriver()` method.
 
-I learned about DriverFactory#changeWebDriver() in the discussion at https://forum.katalon.com/discussion/comment/15164#Comment_15164
+See the following snippet:
 
+```Java:TC2TC2_openOrdinaryChrome
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import com.kms.katalon.core.webui.driver.DriverFactory
+
+// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
+
+// open Chrome browser and let Katalon Studio to use it
+WebDriver driver = new ChromeDriver()
+DriverFactory.changeWebDriver(driver)
+
+// execute some steps
+WebUI.navigateToUrl('http://demoaut.katalon.com')
+WebUI.verifyElementPresent(findTestObject("Page_CURA Healthcare Service/a_Make Appointment"), 20)
+
+// close the browser
+WebUI.closeBrowser()
+```
+
+I learned about DriverFactory#changeWebDriver() in the discussion at https://forum.katalon.com/discussion/comment/15164#Comment_15164
 
 ## Result
 
