@@ -20,30 +20,22 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
 /**
- * This code demonstrates how effectively DriverFactory.changeWebDriver() method can be used. 
- * 
- * As "https://forum.katalon.com/discussion/6150/google-chrome-crashed-on-my-pc-----2-reasons-found" records,
- * When Katalon Studio opens Google Chrome browser may crashed if Force-Installed-Extension is installed in Chrome.
- * It is because Katalon Studio tries to start Chrome with '--disable-extensions' and '--disable-extensions-except'
- * switches while Force-Installed-Extensions resist to be disabled. Contradiction!
- * 
- * DriverFactory.changeWebDriver() enables us to make a workaround for this issue. We instanciates ChromeDriver
- * for ourself (rather than relying on the default ChromeDriver instanciated by Katalon Studio),
- * and let Katalon to use the manually-instanciated ChromeDriver. This way works! 
+ * This code demonstrates how effectively DriverFactory.changeWebDriver() method can be used.
  */
-// https://forum.katalon.com/discussion/comment/15164#Comment_15164
+
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.DesiredCapabilities
 import com.kms.katalon.core.webui.driver.DriverFactory
 
-System.setProperty('webdriver.chrome.driver', 'C:/Katalon_Studio_Windows_64-5.4.1/configuration/resources/drivers/chromedriver_win32/chromedriver.exe')
-System.setProperty('webdriver.chrome.logfile', 'C:/Users/qcq0264/tmp/chromedriver.log')
-WebDriver driver = new ChromeDriver()
-DriverFactory.changeWebDriver(driver)
 
-// 単純なテストを実行する
-WebUI.navigateToUrl('http://demoaut.katalon.com')
-WebUI.verifyElementPresent(findTestObject("Page_CURA Healthcare Service/a_Make Appointment"),20)
-WebUI.closeBrowser()
+if (GlobalVariable.CHANGE_WEBDRIVER) {
+	ChromeOptions options = new ChromeOptions()
+	DesiredCapabilities capabilities = new DesiredCapabilities()
+	capabilities.setCapability(ChromeOptions.CAPABILITY, options)
+	WebDriver driver = new ChromeDriver(capabilities)
+	DriverFactory.changeWebDriver(driver)
+} else {
+	WebUI.openBrowser('')
+}
