@@ -19,9 +19,9 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKe
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
+System.setProperty('webdriver.chrome.driver', "C:/Katalon_Studio_Windows_64-5.4.1/configuration/resources/drivers/chromedriver_win32/chromedriver.exe")
+System.setProperty('webdriver.chrome.logfile', "C:/temp/chromedriver_TC1.log")
 
-// let Katalon Stuio open a browser
 WebUI.openBrowser('')
 
 // execute some steps

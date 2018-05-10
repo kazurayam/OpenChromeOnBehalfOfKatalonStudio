@@ -23,7 +23,8 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import com.kms.katalon.core.webui.driver.DriverFactory
 
-// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
+System.setProperty('webdriver.chrome.driver', "C:/Katalon_Studio_Windows_64-5.4.1/configuration/resources/drivers/chromedriver_win32/chromedriver.exe")
+System.setProperty('webdriver.chrome.logfile', "C:/temp/chromedriver_TC2.log")
 
 // open Chrome browser and let Katalon Studio to use it
 WebDriver driver = new ChromeDriver()

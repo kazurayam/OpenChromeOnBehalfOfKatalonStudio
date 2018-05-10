@@ -4,14 +4,4 @@
    <name>default</name>
    <tag></tag>
    <defaultProfile>true</defaultProfile>
-   <GlobalVariableEntity>
-      <description></description>
-      <initValue>'C:/Katalon_Studio_Windows_64-5.4.1'</initValue>
-      <name>KATALONSTUDIO_HOME</name>
-   </GlobalVariableEntity>
-   <GlobalVariableEntity>
-      <description></description>
-      <initValue>'C:/temp'</initValue>
-      <name>DRIVERLOG_OUTPUT_DIRECTORY</name>
-   </GlobalVariableEntity>
 </GlobalVariableEntities>

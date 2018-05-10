@@ -25,7 +25,8 @@ import com.kms.katalon.core.webui.driver.DriverFactory
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.DesiredCapabilities
 
-// Test Listener TS1 sets System.setProperty('webdriver.chrome.driver', <path to chromedriver.exe>)
+System.setProperty('webdriver.chrome.driver', "C:/Katalon_Studio_Windows_64-5.4.1/configuration/resources/drivers/chromedriver_win32/chromedriver.exe")
+System.setProperty('webdriver.chrome.logfile', "C:/temp/chromedriver_TC3.log")
 
 // open Chrome browser with switches and let Katalon Studio to use it
 ChromeOptions options = new ChromeOptions()
