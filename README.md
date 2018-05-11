@@ -138,6 +138,14 @@ I refered to a blog [List of Chromium Command Line Switches](https://peter.sh/ex
 
 As for `--proxyserver=xxxx` switch, I thought it is not meaningful. Because my Chrome browser is already configured with Proxy info. It does not need to be instructed by Katalon Studio of Proxy info.
 
-As for `--remote-debugging-port=12705` switch, I made one more test case `TC3_openChromeWithSwitches` and ran it to see what happens. The result was interesting. TC3 succeeded to open the Chrome browser but Katalon Studio failed to communicate with the Chrome. OK, I should NOT specify `--remote-debugging-port=12705` either.
+As for `--remote-debugging-port=12705` switch, I made one more test case `TC3_openChromeWithSwitches` and ran it to see what happens. The result was interesting. TC3 succeeded to open the Chrome browser but Katalon Studio failed to communicate with the Chrome. Katalon Studio emitted the following message:
+```
+Test Cases/TC3_openChromeWithSwitches FAILED because (of) org.openqa.selenium.WebDriverException: chrome not reachable
+ (Driver info: chromedriver=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+ Command duration or timeout: 60.68 seconds
+```
+OK, I should NOT specify `--remote-debugging-port=12705`. I should leave as default.
 
-My conclusion: as far as my Chrome browser on my corporate PC has a ForceInstalledExtensions installed, I would apply the trick `TC2_openOrdinaryChrome` to run my tests with Chrome.
+## My conclusion
+
+The Chrome browser on my corporate PC has a ForceInstalledExtensions installed. I can not remove it. So I would apply the trick `TC2_openOrdinaryChrome` to run my tests on Katalon Studio with Chrome.
