@@ -146,7 +146,10 @@ Test Cases/TC3_openChromeWithSwitches FAILED because (of) org.openqa.selenium.We
  (Driver info: chromedriver=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
  Command duration or timeout: 60.68 seconds
 ```
-OK, I should NOT specify `--remote-debugging-port=12705`. I should leave as default.
+
+I repeated executing TC1 and TC2 and found that the port number seems to be dynamically chosen: 12705, 12033, 12452, 12504, 12067, 12986, ...
+
+OK, I should NOT explicitly specify `--remote-debugging-port=xxxxx`. I should leave as default.
 
 ## My conclusion
 
